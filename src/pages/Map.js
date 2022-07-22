@@ -18,13 +18,18 @@ const Map = () => {
   const [viewport, setViewport] = useState({
     latitude: 28.640623,
     longitude: 77.420719,
-    zoom: 8,
+    zoom: 4,
   });
   const mapRef = useRef();
+  const [userLocation, setUserLocation] = useState(null);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         if (position.coords.latitude && position.coords.longitude) {
+          setUserLocation(() => ({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          }));
           setViewport((prevView) => ({
             ...prevView,
             latitude: position.coords.latitude,
@@ -79,10 +84,14 @@ const Map = () => {
             src="https://element-ui.netlify.app/assets/avatar.svg"
           />
         </div>
-
-        <Marker longitude={77.0266} latitude={28.4595}>
-          <FaMapMarkerAlt color="red" />
-        </Marker>
+        {userLocation && (
+          <Marker
+            longitude={userLocation.longitude}
+            latitude={userLocation.latitude}
+          >
+            <FaMapMarkerAlt color="red" />
+          </Marker>
+        )}
       </MapGL>
       <RightSidebar />
       <WeatherReport />
