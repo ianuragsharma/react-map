@@ -1,8 +1,9 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import MapGL, { NavigationControl } from "react-map-gl";
+import MapGL, { Marker, NavigationControl } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import {
   LineChat,
   MapMarkers,
@@ -17,13 +18,9 @@ const Map = () => {
   const [viewport, setViewport] = useState({
     latitude: 28.640623,
     longitude: 77.420719,
-    zoom: 10,
+    zoom: 8,
   });
   const mapRef = useRef();
-  const handleViewportChange = useCallback(
-    (newViewport) => setViewport(newViewport),
-    []
-  );
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -37,6 +34,11 @@ const Map = () => {
       });
     }
   }, []);
+  const handleViewportChange = useCallback(
+    (newViewport) => setViewport(newViewport),
+    []
+  );
+
   const handleGeocoderViewportChange = useCallback(
     (newViewport) => {
       const geocoderDefaultOverrides = { transitionDuration: 1000 };
@@ -48,6 +50,7 @@ const Map = () => {
     },
     [handleViewportChange]
   );
+
   return (
     <div>
       <MapGL
@@ -65,7 +68,6 @@ const Map = () => {
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="top-left"
         />
-
         <NavigationControl
           className="navigation-control"
           position="top-right"
@@ -77,12 +79,16 @@ const Map = () => {
             src="https://element-ui.netlify.app/assets/avatar.svg"
           />
         </div>
-        <RightSidebar />
-        <WeatherReport />
-        <MapOptions />
-        <MapMarkers />
-        <LineChat />
+
+        <Marker longitude={77.0266} latitude={28.4595}>
+          <FaMapMarkerAlt color="red" />
+        </Marker>
       </MapGL>
+      <RightSidebar />
+      <WeatherReport />
+      <MapOptions />
+      <MapMarkers />
+      <LineChat />
     </div>
   );
 };
