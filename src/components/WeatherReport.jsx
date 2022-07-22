@@ -8,7 +8,9 @@ const WeatherReport = () => {
       <div className="divider"></div>
     </div>
   ));
-  return <div className="weather-container">{weatherList}</div>;
+  return (
+    <div className="weather-container component-wrapper">{weatherList}</div>
+  );
 };
 
 export { WeatherReport };

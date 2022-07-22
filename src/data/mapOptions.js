@@ -6,7 +6,7 @@ const mapOption = [
     id: uuidv4(),
     isChecked: false,
     text: "Forest Cover Change",
-    subText: "Qiaterly, 10m",
+    subText: "Quarterly, 10m",
   },
   {
     id: uuidv4(),

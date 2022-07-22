@@ -26,17 +26,21 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.component-wrapper {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  color: white;
+}
 .weather-container {
   width: 12rem;
   height: fit-content;
   position: absolute;
   top: 5rem;
   left: 0.8rem;
-  bottom: 1rem;
-  border-radius: 10px;
   background-color: rgba(35, 35, 35, 0.9);
-  padding: 0.2rem 0.6rem;
-  color: white;
 }
 .weather-items {
   display: flex;
@@ -52,17 +56,11 @@
 }
 .divider {
   margin: 1.4rem 0rem;
-  /* border-bottom: 1px solid white; */
 }
 .options-container {
-  width: fit-content;
-  height: fit-content;
-  position: absolute;
   top: 5rem;
   left: 14rem;
-  border-radius: 10px;
   background-color: rgba(55, 55, 52, 0.9);
-  color: white;
   padding: 0.6rem;
 }
 
@@ -107,15 +105,10 @@
   font-size: 10px;
 }
 .markers-container {
-  width: fit-content;
-  height: fit-content;
-  position: absolute;
-  top: 15rem;
+  top: 27rem;
   left: 14rem;
-  border-radius: 10px;
   background-color: white;
   color: black;
-  padding: 0.5rem;
   font-size: 0.8rem;
 }
 .mark-items:not(:first-child) {
@@ -141,4 +134,14 @@
   position: absolute;
   right: 1.5rem;
   top: 1rem;
+}
+.linechart-continaer {
+  top: 15rem;
+  left: 14rem;
+  background-color: rgba(55, 55, 52, 0.9);
+  color: white;
+}
+
+.chart-heading {
+  text-align: center;
 }

@@ -15,7 +15,9 @@ const MapOptions = () => {
       </div>
     </div>
   ));
-  return <div className="options-container">{mapOptionsList}</div>;
+  return (
+    <div className="options-container component-wrapper">{mapOptionsList}</div>
+  );
 };
 
 export { MapOptions };

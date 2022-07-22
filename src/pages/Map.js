@@ -1,9 +1,10 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import MapGL, { NavigationControl } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
 import {
+  LineChat,
   MapMarkers,
   MapOptions,
   RightSidebar,
@@ -23,7 +24,19 @@ const Map = () => {
     (newViewport) => setViewport(newViewport),
     []
   );
-
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        if (position.coords.latitude && position.coords.longitude) {
+          setViewport((prevView) => ({
+            ...prevView,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          }));
+        }
+      });
+    }
+  }, []);
   const handleGeocoderViewportChange = useCallback(
     (newViewport) => {
       const geocoderDefaultOverrides = { transitionDuration: 1000 };
@@ -68,6 +81,7 @@ const Map = () => {
         <WeatherReport />
         <MapOptions />
         <MapMarkers />
+        <LineChat />
       </MapGL>
     </div>
   );

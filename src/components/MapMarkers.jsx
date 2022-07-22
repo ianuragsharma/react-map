@@ -10,7 +10,9 @@ const MapMarkers = () => {
       <span>{mark.text}</span>
     </div>
   ));
-  return <div className="markers-container">s{mapMarkerList}</div>;
+  return (
+    <div className="markers-container component-wrapper">{mapMarkerList}</div>
+  );
 };
 
 export { MapMarkers };

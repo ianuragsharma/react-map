@@ -7,7 +7,7 @@ const RightSidebar = () => {
       {<data.icon size={30} />}
     </div>
   ));
-  return <div className="right-sidebar">{sidebarList}</div>;
+  return <div className="right-sidebar component-wrapper">{sidebarList}</div>;
 };
 
 export { RightSidebar };
